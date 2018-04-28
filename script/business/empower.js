@@ -88,7 +88,7 @@ function submit() {
         password: password
       };
       execute = function () {
-        if (phone == '18505511392' && password == '123456') {
+        if (ACCOUNT.phone && ACCOUNT.phone == password) {
           setUserParam(phone);
           openBtnClick('empower-submit-btn');
           wodeInit();
@@ -97,7 +97,10 @@ function submit() {
           openPage(1);
         }
         else {
-          $api.val('empower-phone', '用户名或者密码错误')
+          $(document.body).toast({
+            content: '用户名或者密码错误',
+            duration: 1000
+          });
         }
       }
       break;
@@ -106,10 +109,24 @@ function submit() {
       data = {
         page: 'register',
         phone: phone,
-        password: password,
-        validateCode: validateCode
+        password: password
       };
       execute = function () {
+        if (!ACCOUNT.phone) {
+          ACCOUNT.phone = password;
+          setUserParam(phone);
+          openBtnClick('empower-submit-btn');
+          wodeInit();
+          mingxiInit();
+          faxianInit();
+          openPage(1);
+        }
+        else {
+          $(document.body).toast({
+            content: '该用户已注册',
+            duration: 1000
+          });
+        }
       }
       break;
     case 'modify':
@@ -128,7 +145,8 @@ function submit() {
   execute();
 }
 
-function setUserParam(phone) {
+function setUserParam (phone) {
   User.Status = true;
   User.Phone = phone;
+  $api.text('phone', phone);
 }
