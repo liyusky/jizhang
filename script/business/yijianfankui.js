@@ -1,8 +1,8 @@
-function count(dom) {
-  $api.text('count', dom.value.length);
+function yijianfankuiCount(dom) {
+  $api.text('yijianfankui-count', dom.value.length);
 }
 
-function submit() {
+function yijianfankuisubmit() {
   alert('正在提交...');
   setTimeout(function () {
     $api.val('question-textarea', '');

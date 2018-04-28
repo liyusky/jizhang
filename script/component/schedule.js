@@ -20,6 +20,7 @@
 	}
 
 	function Schedule (opt) {
+		this.clickCb = opt.clickCb;
 		var def = {},
 			opt = extend(def,opt,true),
 			curDate = opt.date ? new Date(opt.date) : new Date(),
@@ -51,7 +52,7 @@
 						break;
 				};
 				if(e.target.className.indexOf('currentDate') > -1){
-					opt.clickCb && opt.clickCb(year, month+1, e.target.innerHTML);
+					_this.clickCb && _this.clickCb(year, month+1, e.target.innerHTML);
 					selectedDate = e.target.title;
 					day = e.target.innerHTML;
 					render();

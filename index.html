@@ -1,4 +1,749 @@
-<script type="text/javascript" src="../../script/aui-components/aui-tab.js"></script>
-  <!-- <script type="text/javascript" charset="utf-8" src="../../script/global/global-property.js"></script> -->
-  <!-- <script type="text/javascript" charset="utf-8" src="../../script/global/global-method.js"></script> -->
-    <!-- <script type="text/javascript" charset="utf-8" src="../../script/jizhang/iconClass.js"></script> -->
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, initial-scale=1.0, width=device-width" />
+  <meta name="format-detection" content="telephone=no, email=no, date=no, address=no">
+  <script type="text/javascript" charset="utf-8" src="./script/component/flexible.js"></script>
+  <title>首页</title>
+  <link rel="stylesheet" type="text/css" href="./css/aui.css">
+  <link rel="stylesheet" type="text/css" href="./css/aui-extends.css">
+  <!-- 图标 -->
+  <link rel="stylesheet" type="text/css" href="./iconfont/iconfont.css">
+  <!-- 日历css -->
+  <link rel="stylesheet" href="https://at.alicdn.com/t/font_234130_nem7eskcrkpdgqfr.css">
+
+</head>
+
+<body>
+  <!-- mingxi -->
+  <div class="mingxi-page" id="mingxi">
+    <!-- header -->
+    <header class="header-wrap">
+      <div class="header-title text-center text-write">借条大师</div>
+    </header>
+    <!-- title -->
+    <section class="title-wrap">
+      <div class="title-hd clearfix">
+        <div class="title-hd-L">
+          <span class="title-Year" id="title-year">2018</span>
+          <span>年</span>
+        </div>
+        <div class="title-hd-M">
+          <span>收入</span>
+        </div>
+        <div class="title-hd-R">
+          <span>支出</span>
+        </div>
+      </div>
+      <div class="title-bd clearfix">
+        <div class="title-bd-L" onclick="javascript: setCurrentMonth();">
+          <span class="title-bd-B title-Month" id="title-month">1</span>
+          <span class="title-bd-S">月</span>
+          <img src="./image/mingxi/pull.png">
+        </div>
+        <div class="title-bd-M">
+          <span class="title-bd-B" id="count-income">50</span>
+        </div>
+        <div class="title-bd-R">
+          <span class="title-bd-B" id="count-pay">100</span>
+        </div>
+      </div>
+    </section>
+    <!-- container -->
+    <section class="container-wrap">
+      <div class="container-none">
+        <img src="./image/mingxi/none.png" alt="">
+      </div>
+      <div class="container-block">
+        <div class="container-inner">
+          <ul class="container-ul" id="container-list">
+            <li class="containerLi">
+              <div class="container-li">
+                <div class="container-inner-wrap">
+                  <div class="container-inner-L">
+                    <i class="icon iconfont icon-fushi"></i>
+                  </div>
+                  <div class="container-inner-R">
+                    <div class="container-inner-name one-txt-cut">
+                      <span class="nameaddhtml">购物</span>
+                    </div>
+                    <div class="container-inner-num one-txt-cut">
+                      <span class="moneyaddhtml">25</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="container-delete">
+                  <i class="aui-iconfont aui-icon-close text-30"></i>
+                </div>
+              </div>
+            </li>
+            <li class="containerLi">
+              <div class="container-li">
+                <div class="container-inner-wrap">
+                  <div class="container-inner-L">
+                    <i class="icon iconfont icon---"></i>
+                  </div>
+                  <div class="container-inner-R">
+                    <div class="container-inner-name one-txt-cut">
+                      <span class="nameaddhtml">发工资</span>
+                    </div>
+                    <div class="container-inner-num one-txt-cut">
+                      <span class="moneyaddhtml">100</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="container-delete">
+                  <i class="aui-iconfont aui-icon-close text-30"></i>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- jizhang -->
+  <div class="jizhang-page aui-hide" id="jizhang">
+    <!-- header -->
+    <div class="record-hd-wrap">
+      <div class="record-hd">
+        <div class="record-hd-title">
+          <div class="record-hd-title-R">
+            <!-- <span class="record-cancel" onclick="location='../mingxi/mingxi.html'">取消</span> -->
+          </div>
+          <div class="record-hd-title-M">
+            <span class="record-hd-name">支出</span>
+            <img src="./image/jizhang/pull.png" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- body -->
+    <section class="record-wrap">
+      <!-- expend -->
+      <div class="record-bd expend-content">
+        <ul class="clearfix">
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-canyin"></i>
+            </div>
+            <div class="record-name">
+              <span>餐饮</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-gouwu"></i>
+            </div>
+            <div class="record-name">
+              <span>购物</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-riyongbaihuo"></i>
+            </div>
+            <div class="record-name">
+              <span>日用</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-qiche"></i>
+            </div>
+            <div class="record-name">
+              <span>交通</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-shucai-copy"></i>
+            </div>
+            <div class="record-name">
+              <span>蔬菜</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-shuiguo"></i>
+            </div>
+            <div class="record-name">
+              <span>水果</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-lingshi"></i>
+            </div>
+            <div class="record-name">
+              <span>零食</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-yundong"></i>
+            </div>
+            <div class="record-name">
+              <span>运动</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-yule"></i>
+            </div>
+            <div class="record-name">
+              <span>娱乐</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-tongxun"></i>
+            </div>
+            <div class="record-name">
+              <span>通讯</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-fushi"></i>
+            </div>
+            <div class="record-name">
+              <span>服饰</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-meirong"></i>
+            </div>
+            <div class="record-name">
+              <span>美容</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-zhufang"></i>
+            </div>
+            <div class="record-name">
+              <span>住房</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-jujia"></i>
+            </div>
+            <div class="record-name">
+              <span>居家</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-geihaizi"></i>
+            </div>
+            <div class="record-name">
+              <span>孩子</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-changbei"></i>
+            </div>
+            <div class="record-name">
+              <span>长辈</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-shejiao"></i>
+            </div>
+            <div class="record-name">
+              <span>社交</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-lvxing"></i>
+            </div>
+            <div class="record-name">
+              <span>旅行</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-yanjiu"></i>
+            </div>
+            <div class="record-name">
+              <span>烟酒</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-9"></i>
+            </div>
+            <div class="record-name">
+              <span>数码</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-qiche"></i>
+            </div>
+            <div class="record-name">
+              <span>汽车</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-yiliao"></i>
+            </div>
+            <div class="record-name">
+              <span>医疗</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-shuji"></i>
+            </div>
+            <div class="record-name">
+              <span>书籍</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-focus-xxhd"></i>
+            </div>
+            <div class="record-name">
+              <span>学习</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- income -->
+      <div class="record-bd income-content">
+        <ul class="clearfix">
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon---"></i>
+            </div>
+            <div class="record-name">
+              <span>工资</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-jianzhi"></i>
+            </div>
+            <div class="record-name">
+              <span>兼职</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-32"></i>
+            </div>
+            <div class="record-name">
+              <span>理财</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-lijin"></i>
+            </div>
+            <div class="record-name">
+              <span>礼金</span>
+            </div>
+          </li>
+          <li class="record-bd-li">
+            <div class="record-img">
+              <i class="icon iconfont icon-qdf-qita"></i>
+            </div>
+            <div class="record-name">
+              <span>其他</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+    <!-- remark -->
+    <section class="remark-wrap">
+      <div class="remark-hd">
+        <span>备注：</span>
+        <input class="remark-input one-txt-cut" type="text" name="" value="">
+      </div>
+      <div class="remark-bd">
+        <span>日期：</span>
+        <span class="remark-date"></span>
+      </div>
+      <div class="remark-ft">
+        <span>金额：</span>
+        <input class="remark-money-input one-txt-cut" type="number">
+      </div>
+      <div class="remark-submit">
+        <button class="submit-btn" type="button" name="button" onclick="javascript: jizhangSetItems();">完成</button>
+      </div>
+    </section>
+    <section class="slide-wrap">
+      <div class="slide-expend">
+        <div class="slide-expend-L">
+          <img src="./image/jizhang/up.png" alt="">
+        </div>
+        <div class="slide-expend-R">
+          <span>支出</span>
+          <img class="slide-expend-img" src="./image/jizhang/true.png" alt="">
+        </div>
+      </div>
+      <div class="slide-income">
+        <div class="slide-income-L">
+          <img src="./image/jizhang/down.png" alt="">
+        </div>
+        <div class="slide-income-R">
+          <span>收入</span>
+          <img class="slide-income-img" src="./image/jizhang/true.png" alt="">
+        </div>
+      </div>
+    </section>
+    <section class="shade"></section>
+  </div>
+
+  <!-- faxian -->
+  <div class="faxian aui-hide" id="faxian">
+    <header class="header">
+      <div class="header-title">发现</div>
+    </header>
+    <section class="bill-wrap">
+      <p class="bill-title">账单</p>
+      <div class="bill-month">
+        <span class="bill-month-number" id="date">1</span>
+        <span class="bill-month-text">月</span>
+      </div>
+      <ul class="bill-detail">
+        <li class="bill-detail-item">
+          <p class="item-text">收入</p>
+          <p class="item-number" id="income">100</p>
+        </li>
+        <li class="bill-detail-item">
+          <p class="item-text">支出</p>
+          <p class="item-number" id="pay">200</p>
+        </li>
+        <li class="bill-detail-item">
+          <p class="item-text">结余</p>
+          <p class="item-number" id="count">100</p>
+        </li>
+      </ul>
+    </section>
+    <div class="division"></div>
+    <h4>常用服务</h4>
+    <ul class="link-list">
+      <li class="link-list-item" onclick="openPage(10)">
+        <img class="list-item-image" src="./image/faxian/FX_ershoujiaoyi.png">
+        <p class="list-item-message">二手交易</p>
+      </li>
+      <li class="link-list-item" onclick="openPage(11)">
+        <img class="list-item-image" src="./image/faxian/FX_kuaidi.png">
+        <p class="list-item-message">快递查询</p>
+      </li>
+      <li class="link-list-item" onclick="openPage(12)">
+        <img class="list-item-image" src="./image/faxian/FX_huilv.png">
+        <p class="list-item-message">汇率查询</p>
+      </li>
+      <li class="link-list-item" onclick="openPage(13)">
+        <img class="list-item-image" src="./image/faxian/FX_weizhang.png">
+        <p class="list-item-message">违章查询</p>
+      </li>
+    </ul>
+  </div>
+
+  <!-- login -->
+
+  <!-- wode -->
+  <div class="wode-page wode aui-hide" id="wode">
+    <header>
+      <img class="header-avatar" src="./image/wode/avatar.png">
+      <p class="header-phone" id="phone">18505511392</p>
+      <ul class="header-detail">
+        <li class="header-detail-item">
+          <p class="detail-item-number" id="count-record">0</p>
+          <p class="detail-item-message">记账总笔数</p>
+        </li>
+        <li class="header-detail-item">
+          <p class="detail-item-number" id="count-remind">0</p>
+          <p class="detail-item-message">提醒总次数</p>
+        </li>
+      </ul>
+    </header>
+    <ul class="common-list margin-top-21">
+      <li class="common-list-item" onclick="javascript: openPage(6);">
+        <div class="item-left-addon">
+          <img class="image-control" src="./image/wode/WD__tixing.png">
+        </div>
+        <div class="item-content-wrap">
+          <span>定时提醒</span>
+          <i class="aui-iconfont aui-icon-right"></i>
+        </div>
+      </li>
+      <li class="common-list-item">
+        <div class="item-left-addon">
+          <img class="image-control" src="./image/wode/WD__shengyin.png">
+        </div>
+        <div class="item-content-wrap border-top-1">
+          <span>声音开关</span>
+          <input type="checkbox" class="aui-switch">
+        </div>
+      </li>
+      <li class="common-list-item">
+        <div class="item-left-addon">
+          <img class="image-control" src="./image/wode/WD__mingxi.png">
+        </div>
+        <div class="item-content-wrap border-top-1">
+          <span>明细详情</span>
+          <input type="checkbox" class="aui-switch">
+        </div>
+      </li>
+    </ul>
+    <ul class="common-list margin-top-21">
+      <li class="common-list-item" onclick="javascript: openPage(8);">
+        <div class="item-left-addon">
+          <img class="image-control" src="./image/wode/WD__yijianfankui.png">
+        </div>
+        <div class="item-content-wrap">
+          <span>意见反馈</span>
+          <i class="aui-iconfont aui-icon-right"></i>
+        </div>
+      </li>
+      <li class="common-list-item" onclick="javascript: openPage(5);">
+        <div class="item-left-addon">
+          <img class="image-control" src="./image/wode/WD__bangzhu.png">
+        </div>
+        <div class="item-content-wrap border-top-1">
+          <span>帮助</span>
+          <i class="aui-iconfont aui-icon-right"></i>
+        </div>
+      </li>
+      <li class="common-list-item" onclick="javascript: openPage(7);">
+        <div class="item-left-addon">
+          <img class="image-control" src="./image/wode/WD__guanyu.png">
+        </div>
+        <div class="item-content-wrap border-top-1">
+          <span>关于记账借条大师</span>
+          <i class="aui-iconfont aui-icon-right"></i>
+        </div>
+      </li>
+    </ul>
+    <button class="btn-square margin-top-72" onclick="javascript: logout();">退出登录</button>
+  </div>
+
+  <!-- bangzhu -->
+  <div class="bangzhu aui-hide" id="bangzhu">
+    <header class="header">
+      <div class="header-title">帮助</div>
+      <div class="header-left-addon" onclick="javascript: openPage(4);">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <section class="bangzhu-inner">
+      <h3>懒钱记账使用帮助</h3>
+      <h5>1、如何修改记账日期</h5>
+      <p>在记账的数字键盘中点击“今天”，即可选择想记录的日期。</p>
+      <h5>2、如何在首页快捷编辑记账？</h5>
+      <p>在“我的”页面，关闭明细详情按钮，就可以使用以前的快捷编辑功能啦。</p>
+      <h5>3、如何在图标曲线中看到最大的三笔费用？</h5>
+      <p>在曲线上长按屏幕，即可看到top3明细，左右滑动可以切换日期。</p>
+      <h5>4、推荐备注功能帮您提升记账速度</h5>
+      <p>我们建议您每次记账的时候，记录2-4个字的备注，方便您未来能够识别具体的消费明细。您下次记录备注的时候，我们会把之前的备注推荐给您，帮您提升记账的速度。</p>
+      <h5>5、记账正确的姿势</h5>
+      <p>我们建议您养成消费后即时记账的习惯，这样才能帮助您未来对收支状况进行有效的分析。您可以通过设置中的提醒功能来提醒自己记账。</p>
+    </section>
+  </div>
+
+  <!-- dingshitixing -->
+  <div class="dingshitixing aui-hide" id="dingshitixing">
+    <header class="header">
+      <div class="header-title">定时提醒</div>
+      <div class="header-left-addon" onclick="javascript: openPage(4);">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <ul class="remind-list" id="list"></ul>
+    <button class="btn-square submit-btn" onclick="javascript: addTag();">添加提醒</button>
+  </div>
+
+  <!-- guanyulanqian -->
+  <div class="guanyulanqian aui-hide" id="guanyulanqian">
+    <header class="header">
+      <div class="header-title">关于记账借条大师</div>
+      <div class="header-left-addon" onclick="javascript: openPage(4);">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <img class="reminder-image" src="./image/wode/GY.png">
+    <p class="reminder-message">财务自由从懒钱记账开始</p>
+  </div>
+
+  <!-- yijianfankui -->
+  <div class="yijianfankui aui-hide" id="yijianfankui">
+    <header class="header">
+      <div class="header-title">意见反馈</div>
+      <div class="header-left-addon" onclick="javascript: openPage(4);">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <section class="aui-content margin-top-21 question-wrap">
+      <div class="aui-row question-note">
+        <div class="aui-col-xs-12 text-30">
+          <span class="text-red">*</span>
+          <span class="text-black">请描述您遇到的问题</span>
+        </div>
+      </div>
+      <div class="aui-row">
+        <div class="aui-col-xs-12 text-27 question-content">
+          <textarea placeholder="描述你的问题" id="question-textarea" class="text-gray" maxlength="200" oninput="javascript: yijianfankuiCount(this);"></textarea>
+          <div class="count-wrap aui-text-right text-gray">
+            <span id="yijianfankui-count">0</span>
+            <span>/</span>
+            <span>200</span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <button class="btn-square submit-btn" onclick="javascript: yijianfankuisubmit();">提交意见</button>
+  </div>
+
+  <!-- login -->
+  <div class="empower aui-hide" id="empower">
+    <header class="header">
+      <div class="header-left-addon text-30" onclick="javascript: closeFormwork();">
+        <i class="aui-iconfont aui-icon-close text-45"></i>
+      </div>
+      <div class="header-tab">
+        <button class="header-tab-item selected" onclick="javascript: switchEmpower('login');" id="other-btn">登录</button>
+        <button class="header-tab-item" onclick="javascript: switchEmpower('register');" id="register-btn">注册</button>
+      </div>
+      <img class="header-logo" src="./image/shouquan/logo.png">
+      <div class="image-bg">
+        <img class="image-content" src="./image/shouquan/empower-bg.png">
+      </div>
+    </header>
+    <section class="aui-content">
+      <ul class="aui-list" id="input-list">
+        <li class="aui-list-item aui-row" id="phone-input">
+          <div class="aui-col-xs-12">
+            <div class="input-group">
+              <i class="iconfont icon-geren input-group-addon font-size-40 aui-pull-left icon-blue"></i>
+              <input class="input-control aui-pull-left" id="empower-phone" type="text" maxlength="11" minlength="11" placeholder="请输入手机号">
+            </div>
+          </div>
+        </li>
+        <li class="aui-list-item aui-row">
+          <div class="aui-col-xs-12">
+            <div class="input-group">
+              <i class="iconfont icon-suo input-group-addon font-size-40 aui-pull-left icon-blue"></i>
+              <input class="input-control aui-pull-left" id="empower-password" type="password" maxlength="16" minlength="6" placeholder="请输入6-16位密码">
+              <button class="verification-code-btn font-size-30 aui-pull-right text-blue" id="modify-btn" onclick="javascript: switchEmpower('modify');">忘记密码</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </section>
+    <button class="btn-fillet margin-top-72" id="empower-submit-btn" onclick="javascript: submit();">登陆</button>
+  </div>
+
+  <!-- ershoujiaoyi -->
+  <div class="ershoujiaoyi aui-hide" id="ershoujiaoyi">
+    <header class="header">
+      <div class="header-title">帮助</div>
+      <div class="header-left-addon" onclick="openPage(3)">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <section class="ershoujiaoyi-inner">
+      <iframe src="http://2.zol.com.cn/"></iframe>
+    </section>
+  </div>
+
+  <!-- kuaidi100 -->
+  <div class="kuaidi100 aui-hide" id="kuaidi100">
+    <header class="header">
+      <div class="header-title">帮助</div>
+      <div class="header-left-addon" onclick="openPage(3)">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <section class="kuaidi100-inner">
+      <iframe src="http://www.kuaidi100.com"></iframe>
+    </section>
+  </div>
+
+  <!-- sourcedb -->
+  <div class="sourcedb aui-hide" id="sourcedb">
+    <header class="header">
+      <div class="header-title">帮助</div>
+      <div class="header-left-addon" onclick="openPage(3)">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <section class="sourcedb-inner">
+      <iframe src="http://www.boc.cn/sourcedb/whpj/"></iframe>
+    </section>
+  </div>
+
+  <!-- weizhang8 -->
+  <div class="weizhang aui-hide" id="weizhang">
+    <header class="header">
+      <div class="header-title">帮助</div>
+      <div class="header-left-addon" onclick="openPage(3)">
+        <i class="aui-iconfont aui-icon-left"></i>
+        <span id="back-text">返回</span>
+      </div>
+    </header>
+    <section class="weizhang-inner">
+      <iframe src="http://chaxun.weizhang8.cn/"></iframe>
+    </section>
+  </div>
+
+  <footer class="aui-bar aui-bar-tab page-tab-wrap" id="footer">
+    <div class="aui-bar-tab-item aui-active" id="footer-home" tapmode>
+      <i class="iconfont icon-mingxihui text-45 text-gray"></i>
+      <div class="aui-bar-tab-label text-21">明细</div>
+    </div>
+    <div class="aui-bar-tab-item" id="footer-jizhang" tapmode>
+      <i class="iconfont icon-jizhanghui text-45 text-gray"></i>
+      <div class="aui-bar-tab-label text-21">记账</div>
+    </div>
+    <div class="aui-bar-tab-item" id="footer-faxian" tapmode>
+      <i class="iconfont icon-faxian text-45 text-gray"></i>
+      <div class="aui-bar-tab-label text-21">发现</div>
+    </div>
+    <div class="aui-bar-tab-item" id="footer-wode" tapmode>
+      <i class="iconfont icon-wodedan text-45 text-gray"></i>
+      <div class="aui-bar-tab-label text-21">我的</div>
+    </div>
+  </footer>
+
+  <div id='schedule-box' class="boxshaw aui-hide"></div>
+  <script type="text/javascript" charset="utf-8" src="./script/component/api.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/component/aui-tab.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/component/schedule.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/component/zepto.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/component/iconClass.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/component/roll.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="./script/business/index.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/business/mingxi.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/business/jizhang.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/business/dingshitixing.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/business/faxian.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/business/yijianfankui.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/business/wode.js"></script>
+  <script type="text/javascript" charset="utf-8" src="./script/business/empower.js"></script>
+
+</body>
+</html>

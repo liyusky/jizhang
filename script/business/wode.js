@@ -1,9 +1,8 @@
 window.onload = function () {
-  setListener();
-  init();
+  if (checkLogin()) wodeInit();
 }
 
-function init() {
+function wodeInit() {
   $api.text('count-record', User.recordCount);
   $api.text('count-remind', User.remindCount);
 }
@@ -15,5 +14,8 @@ function setListener() {
 
 function logout() {
   User.Status = false;
-  LogoutEvent();
+  openPage(9);
+  wodeInit();
+  mingxiInit();
+  faxianInit();
 }

@@ -36,45 +36,72 @@ $(function () {
 window.onload = function () {
   //打开时间选择器
   $api.addEvt($api.dom('.remark-date'), 'click', function () {
-
-  });
-
-  $api.addEvt($api.dom('.submit-btn'), 'click', function () {
-    var moneyOld = $api.val($api.dom('.remark-money-input'));
-    var vava = $api.dom('.vavava');
-    var vavaI = $api.first(vava, 'i');
-    var iClass = $api.attr(vavaI, 'class');
-    var remark = $api.val($api.dom('.remark-input'));
-    var date = $api.html($api.dom('.remark-date'));
-    var recordName = $api.html($api.dom('.record-hd-name'));
-    var typeDiv = $api.next(vava);
-    var typeW = $api.first(typeDiv, 'span');
-    var type = $api.html(typeW);
-    var pay = 0;
-    var income = 0;
-
-    switch (recordName) {
-      case '支出':
-        pay = moneyOld;
-        income = 0;
-        break;
-      case '收入':
-        pay = 0;
-        income = moneyOld;
-        break;
+    if ($api.hasCls('schedule-box', 'aui-hide')) {
+      mySchedule = new Schedule({
+        el: '#schedule-box',
+        //date: '2018-9-20',
+        clickCb: function (y, m, d) {
+          $api.addCls('schedule-box', 'aui-hide');
+        },
+      });
+      $api.removeCls('schedule-box', 'aui-hide');
     }
-    if (moneyOld == '') {
-      alert("请填写金额");
-      return;
+    else {
+      $api.addCls('schedule-box', 'aui-hide');
     }
-
-    Log.push({
-      remark: remark,
-      date: date,
-      pay: pay,
-      income: income,
-      iClass: iClass,
-      type: type
-    });
   });
+}
+
+
+
+function jizhangSetItems() {
+  var moneyOld = $api.val($api.dom('.remark-money-input'));
+  var vava = $api.dom('.vavava');
+  var vavaI = $api.first(vava, 'i');
+  var iClass = $api.attr(vavaI, 'class');
+  var remark = $api.val($api.dom('.remark-input'));
+  var date = $api.html($api.dom('.remark-date'));
+  var recordName = $api.html($api.dom('.record-hd-name'));
+  var typeDiv = $api.next(vava);
+  var typeW = $api.first(typeDiv, 'span');
+  var type = $api.html(typeW);
+  var pay = 0;
+  var income = 0;
+
+  switch (recordName) {
+    case '支出':
+      pay = moneyOld;
+      income = 0;
+      break;
+    case '收入':
+      pay = 0;
+      income = moneyOld;
+      break;
+  }
+  User.pay += pay * 1;
+  User.income += income * 1;
+  User.count++;
+
+  setMoneyCount();
+  setMoney();
+
+  if (moneyOld == '') {
+    alert("请填写金额");
+    return;
+  }
+
+  User.recordCount++;
+  wodeInit();
+
+  Log.push({
+    remark: remark,
+    date: date,
+    pay: pay,
+    income: income,
+    iClass: iClass,
+    type: type
+  });
+  mingxiInit();
+  $(".remark-wrap").hide();
+  Footer_Btns[0].click();
 }
