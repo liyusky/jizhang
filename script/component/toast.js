@@ -47,6 +47,7 @@
 				content:              "这是一个提示信息",       //提示内容
 				color:                "#fff",                   //文字颜色
 				top:            	  "80%",                	//bottom底部的位置    具体的数值 或者center  垂直居中
+				left: '50%',
 				zIndex:               1000001,                	//层级
 				isCenter:   		  true, 					//是否垂直水平居中显示
 				closePrev: 			  true, 					//在打开下一个toast的时候立即关闭上一个toast
@@ -82,6 +83,7 @@
 					"border-radius":opt.borderRadius,
 					"color":opt.color,
 					"top":top,
+					'left': '50%',
 					"z-index":opt.zIndex,
 					"-webkit-transform":'translate3d(-50%,-50%,0)',
 			        "-moz-transform":'translate3d(-50%,-50%,0)',

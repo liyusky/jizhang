@@ -88,20 +88,37 @@ function submit() {
         password: password
       };
       execute = function () {
-        if (ACCOUNT.phone && ACCOUNT.phone == password) {
-          setUserParam(phone);
+        if (!ACCOUNT[phone]) {
+          $('body').toast({
+            position: 'fixed',
+            content: '用户未注册',
+            duration: 2000,
+            isCenter: true,
+            animateIn: 'bounceIn-hastrans',
+            animateOut: 'bounceOut-hastrans',
+          });
           openBtnClick('empower-submit-btn');
+          return;
+        }
+
+        if (ACCOUNT[phone] == password) {
+          setUserParam(phone);
           wodeInit();
           mingxiInit();
           faxianInit();
           openPage(1);
         }
         else {
-          $(document.body).toast({
+          $('body').toast({
+            position: 'fixed',
             content: '用户名或者密码错误',
-            duration: 1000
+            duration: 2000,
+            isCenter: true,
+            animateIn: 'bounceIn-hastrans',
+            animateOut: 'bounceOut-hastrans',
           });
         }
+        openBtnClick('empower-submit-btn');
       }
       break;
     case 'register':
@@ -112,21 +129,25 @@ function submit() {
         password: password
       };
       execute = function () {
-        if (!ACCOUNT.phone) {
-          ACCOUNT.phone = password;
+        if (!ACCOUNT[phone]) {
+          ACCOUNT[phone] = password;
           setUserParam(phone);
-          openBtnClick('empower-submit-btn');
           wodeInit();
           mingxiInit();
           faxianInit();
           openPage(1);
         }
         else {
-          $(document.body).toast({
+          $('body').toast({
+            position: 'fixed',
             content: '该用户已注册',
-            duration: 1000
+            duration: 2000,
+            isCenter: true,
+            animateIn: 'bounceIn-hastrans',
+            animateOut: 'bounceOut-hastrans',
           });
         }
+        openBtnClick('empower-submit-btn');
       }
       break;
     case 'modify':
@@ -135,7 +156,6 @@ function submit() {
         page: 'modify',
         phone: phone,
         password: password,
-        validateCode: validateCode
       };
       execute = function () {
       }

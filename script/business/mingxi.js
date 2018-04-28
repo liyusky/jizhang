@@ -44,9 +44,9 @@ function setTipHtml(content) {
     '</div>' +
     '<div class="container-delete" data-pay="' + content.pay + '" data-income="' + content.income + '" data-id="' + content.rowid + '" onclick="javascript: removeTip(this);">' +
     '<i class="aui-iconfont aui-icon-close text-30"></i>'
-    '</div>' +
-    '</div>' +
-    '</li>';
+  '</div>' +
+  '</div>' +
+  '</li>';
   return htmlStr;
 }
 
@@ -79,7 +79,7 @@ function setListener() {
 
 function setCurrentMonth() {
   if ($api.hasCls('schedule-box', 'aui-hide')) {
-    mySchedule.prototype.clickCb = function (y, m, d) {
+    Schedule.prototype.clickCb = function (y, m, d) {
       $api.html('title-year', y);
       $api.html('title-month', m);
       $api.addCls('schedule-box', 'aui-hide');
@@ -103,8 +103,3 @@ function addSingleTip(content) {
   var htmlStr = setTipHtml(content);
   $api.append('container-list', htmlStr);
 }
-
-
-
-
-
