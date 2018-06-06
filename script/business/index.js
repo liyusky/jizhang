@@ -39,13 +39,12 @@ var User = {
   pay: 0,
   income: 0,
   count: 0,
-  recordCount: 0,
+  recordCount: Log.length,
   remindCount: 0,
   Phone: null
 };
-var Log = [];
-var remark = {};
 var remarkNum = 0;
+var rowId = 1;
 
 var page = {
   previous: 1,  //前一个点击的页面标记

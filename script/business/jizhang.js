@@ -94,13 +94,16 @@ function jizhangSetItems() {
   wodeInit();
 
   Log.push({
+    rowid: rowId,
     remark: remark,
     date: date,
     pay: pay,
     income: income,
-    iClass: iClass,
-    type: type
+    type: type,
+    phone: User.Phone,
+    month: date.split('-')[1]
   });
+
   mingxiInit();
   $(".remark-wrap").hide();
   Footer_Btns[0].click();

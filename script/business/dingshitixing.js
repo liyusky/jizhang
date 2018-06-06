@@ -1,6 +1,6 @@
-window.onload = function () {
-  setAllReminder();
-}
+setTimeout(function () {
+  setAllReminder(remark);
+}, 5000);
 
 function addTag () {
   if ($api.hasCls('schedule-box', 'aui-hide')) {
@@ -30,8 +30,8 @@ function addTag () {
 }
 
 function deleteTip(dom) {
-  var mark = $api.attr(dom, 'data-id');
-  delete remark[mark];
+  var id = $api.attr(dom, 'data-id');
+  remark[id] = null;
   setAllReminder(remark);
   User.remindCount--;
   wodeInit();
@@ -39,8 +39,8 @@ function deleteTip(dom) {
 
 function setAllReminder() {
   var htmlStr = '';
-  for (let key in remark) {
-    htmlStr += setReminderHtml(remark[key]);
+  for (var i = remark.length; i > 0; i--) {
+    if (!!remark[i - 1]) htmlStr += setReminderHtml(remark[i - 1]);
   }
   $api.html('list', '');
   $api.html('list', htmlStr);

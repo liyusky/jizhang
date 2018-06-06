@@ -27,6 +27,9 @@ function mingxiInit() {
 
 //拼接字符串
 function setTipHtml(content) {
+  User.pay += content.pay * 1;
+  User.income += content.income * 1;
+  rowId += 1;
   var htmlStr = '<li class="containerLi" id="' + content.rowid + '">' +
     '<div class="container-li">' +
     '<div class="container-inner-wrap">' +
@@ -44,16 +47,19 @@ function setTipHtml(content) {
     '</div>' +
     '<div class="container-delete" data-pay="' + content.pay + '" data-income="' + content.income + '" data-id="' + content.rowid + '" onclick="javascript: removeTip(this);">' +
     '<i class="aui-iconfont aui-icon-close text-30"></i>'
-  '</div>' +
-  '</div>' +
-  '</li>';
+    '</div>' +
+    '</div>' +
+    '</li>';
   return htmlStr;
 }
 
 function addAllTip(content) {
   var htmlStr = '';
-  for (var i = 0; i < content.length; i++) {
-    htmlStr += setTipHtml(content[i]);
+  rowId = 1;
+  User.pay = 0;
+  User.income = 0;
+  for (var i = content.length; i > 0; i--) {
+    if (!!content[i - 1]) htmlStr += setTipHtml(content[i - 1]);
   }
   $api.html('container-list', '');
   $api.html('container-list', htmlStr);
@@ -96,7 +102,9 @@ function removeTip(dom) {
   var pay = $api.attr(dom, 'data-pay');
   var income = $api.attr(dom, 'data-income');
   User.recordCount--;
+  Log[id - 1] = null;
   wodeInit();
+  mingxiInit();
 }
 
 function addSingleTip(content) {
