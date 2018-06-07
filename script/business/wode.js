@@ -1,6 +1,6 @@
-window.onload = function () {
+window.addEventListener('load',function () {
   if (checkLogin()) wodeInit();
-}
+});
 
 function wodeInit() {
   $api.text('count-record', User.recordCount);

@@ -1,7 +1,7 @@
 var index = 0;
-window.onload = function () {
+window.addEventListener('load', function () {
   if (checkLogin()) mingxiInit();
-}
+});
 
 
 //初始化
@@ -29,6 +29,7 @@ function mingxiInit() {
 function setTipHtml(content) {
   User.pay += content.pay * 1;
   User.income += content.income * 1;
+  User.recordCount++;
   rowId += 1;
   var htmlStr = '<li class="containerLi" id="' + content.rowid + '">' +
     '<div class="container-li">' +
@@ -47,9 +48,9 @@ function setTipHtml(content) {
     '</div>' +
     '<div class="container-delete" data-pay="' + content.pay + '" data-income="' + content.income + '" data-id="' + content.rowid + '" onclick="javascript: removeTip(this);">' +
     '<i class="aui-iconfont aui-icon-close text-30"></i>'
-    '</div>' +
-    '</div>' +
-    '</li>';
+  '</div>' +
+  '</div>' +
+  '</li>';
   return htmlStr;
 }
 
@@ -59,7 +60,7 @@ function addAllTip(content) {
   User.pay = 0;
   User.income = 0;
   for (var i = content.length; i > 0; i--) {
-    if (!!content[i - 1]) htmlStr += setTipHtml(content[i - 1]);
+    if (!!content[i - 1] && User.Phone == content[i - 1].phone) htmlStr += setTipHtml(content[i - 1]);
   }
   $api.html('container-list', '');
   $api.html('container-list', htmlStr);
@@ -91,8 +92,7 @@ function setCurrentMonth() {
       $api.addCls('schedule-box', 'aui-hide');
     }
     $api.removeCls('schedule-box', 'aui-hide');
-  }
-  else {
+  } else {
     $api.addCls('schedule-box', 'aui-hide');
   }
 }

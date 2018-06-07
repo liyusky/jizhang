@@ -39,7 +39,7 @@ var User = {
   pay: 0,
   income: 0,
   count: 0,
-  recordCount: Log.length,
+  recordCount: 0,
   remindCount: 0,
   Phone: null
 };

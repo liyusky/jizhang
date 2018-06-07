@@ -1,30 +1,29 @@
-setTimeout(function () {
-  setAllReminder(remark);
-}, 5000);
+window.addEventListener('load', function () {
+  setAllReminder();
+})
 
-function addTag () {
+function addTag() {
   if ($api.hasCls('schedule-box', 'aui-hide')) {
     window.mySchedule = null;
     mySchedule = new Schedule({
       el: '#schedule-box',
       //date: '2018-9-20',
       clickCb: function (y, m, d) {
-        let date = y + '-' + m + '-' + d;
-        remark[remarkNum] = {
+        var date = y + '-' + m + '-' + d;
+        remark.push({
           date: date,
-          rowid: remarkNum
-        };
-        ++remarkNum;
+          phone: User.Phone,
+          rowid: User.remindCount
+        });
+        $api.html('list', '');
         setAllReminder();
         $api.addCls('schedule-box', 'aui-hide');
-        User.remindCount++;
         wodeInit();
       },
     });
     window.mySchedule = null;
     $api.removeCls('schedule-box', 'aui-hide');
-  }
-  else {
+  } else {
     $api.addCls('schedule-box', 'aui-hide');
   }
 }
@@ -39,14 +38,16 @@ function deleteTip(dom) {
 
 function setAllReminder() {
   var htmlStr = '';
+  User.remindCount = 0;
   for (var i = remark.length; i > 0; i--) {
-    if (!!remark[i - 1]) htmlStr += setReminderHtml(remark[i - 1]);
+    if (!!remark[i - 1] && User.Phone == remark[i - 1].phone) htmlStr += setReminderHtml(remark[i - 1]);
   }
   $api.html('list', '');
   $api.html('list', htmlStr);
 }
 
 function setReminderHtml(content) {
+  User.remindCount++;
   var htmlStr = '<li class="remind-list-item">' +
     '<span>提醒时间</span>' +
     '<span>' + content.date + '</span>' +

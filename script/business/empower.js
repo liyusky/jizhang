@@ -1,7 +1,7 @@
 var currentEmpower = 'login';
 var roll = null;
 
-window.onload = function () {
+window.addEventListener('load', function () {
   roll = new Roll({
     start: function () {
       closeBtnClick('register-btn');
@@ -18,7 +18,7 @@ window.onload = function () {
       openBtnClick('other-btn');
     }
   });
-}
+})
 
 function switchEmpower(type) {
   if (currentEmpower !== type) {
@@ -91,7 +91,7 @@ function submit() {
         if (!ACCOUNT[phone]) {
           $('body').toast({
             position: 'fixed',
-            content: '用户未注册',
+            content: '用户名或者密码错误',
             duration: 2000,
             isCenter: true,
             animateIn: 'bounceIn-hastrans',

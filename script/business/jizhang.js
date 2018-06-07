@@ -33,7 +33,8 @@ $(function () {
     $(this).find('.record-img').css('background-color', '#6fb7f9');
   })
 })
-window.onload = function () {
+
+window.addEventListener('load', function () {
   //打开时间选择器
   $api.addEvt($api.dom('.remark-date'), 'click', function () {
     if ($api.hasCls('schedule-box', 'aui-hide')) {
@@ -50,7 +51,7 @@ window.onload = function () {
       $api.addCls('schedule-box', 'aui-hide');
     }
   });
-}
+});
 
 
 

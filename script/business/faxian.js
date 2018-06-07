@@ -1,6 +1,6 @@
-window.onload = function () {
+window.addEventListener('load', function () {
   if (checkLogin()) faxianInit();
-}
+})
 
 function faxianInit() {
   var Newdate = new Date();
